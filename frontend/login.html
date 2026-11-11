@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign in — ScamAlert</title><script>try{document.documentElement.dataset.theme=localStorage.getItem("scamalert-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<link rel="stylesheet" href="/css/style.css"></head>
+<body><header class="top"><div class="wrap"><a class="logo" href="/">ScamAlert</a>
+<nav class="main"><a href="/reports.html">Reports</a><a href="/search.html">Search</a><a href="/help.html">Help</a></nav>
+<div class="userbox"><a class="btn" href="/report-new.html">Submit Report</a><span id="user-menu"></span></div></div></header>
+<main class="wrap" style="max-width:28rem"><h1>Sign in</h1><div id="err" class="error" style="display:none"></div>
+<form id="f">
+  <label>Email<input id="email" type="email" autocomplete="email" required autofocus></label>
+  <label>Password
+    <div style="display:flex;gap:0.5rem;align-items:center">
+      <input id="password" type="password" autocomplete="current-password" required style="flex:1">
+      <button type="button" class="btn gray small" id="toggle-pwd" style="padding:0.4rem 0.6rem">Show</button>
+    </div>
+  </label>
+  <p><button class="btn" id="b" type="submit" style="width:100%">Sign in</button></p>
+</form>
+
+<div class="card small" style="margin-top:1.5rem;background:var(--surface);border:1px dashed var(--border)">
+  <strong style="display:block;margin-bottom:0.5rem">Demo Accounts (One-Click Fill)</strong>
+  <p class="muted" style="margin-bottom:0.75rem">All demo accounts use password: <code>Password@123</code></p>
+  <div style="display:flex;flex-wrap:wrap;gap:0.4rem">
+    <button type="button" class="btn gray small" onclick="fillDemo('admin@scamalert.in')">👑 Admin (Arjun)</button>
+    <button type="button" class="btn gray small" onclick="fillDemo('moderator@scamalert.in')">🛡️ Moderator (Sunita)</button>
+    <button type="button" class="btn gray small" onclick="fillDemo('rohit.sharma@example.com')">👤 Regular User (Rohit)</button>
+  </div>
+</div>
+
+<p class="small" style="margin-top:1rem">No account? <a href="/signup.html">Create one</a></p></main>
+<footer class="bot"><div class="wrap"><p>ScamAlert — Community-driven fraud protection for India</p></div></footer>
+<script src="/js/app.js"></script><script src="/js/auth.js"></script><script src="/js/theme.js"></script>
+<script>
+function fillDemo(email) {
+  document.getElementById("email").value = email;
+  document.getElementById("password").value = "Password@123";
+  document.getElementById("err").style.display = "none";
+  document.getElementById("b").focus();
+}
+
+document.getElementById("toggle-pwd").addEventListener("click", function () {
+  const p = document.getElementById("password");
+  if (p.type === "password") {
+    p.type = "text";
+    this.textContent = "Hide";
+  } else {
+    p.type = "password";
+    this.textContent = "Show";
+  }
+});
+
+document.getElementById("f").addEventListener("input", function () {
+  document.getElementById("err").style.display = "none";
+});
+
+document.getElementById("f").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const err = document.getElementById("err"); err.style.display = "none";
+  const b = document.getElementById("b"); b.disabled = true; b.textContent = "Signing in…";
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value;
+  const r = await window.App.api("/api/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+  if (!r.ok) {
+    err.textContent = (r.data && r.data.error) || "Login failed";
+    err.style.display = "block";
+    b.disabled = false;
+    b.textContent = "Sign in";
+    return;
+  }
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get("callbackUrl") || params.get("next") || "/";
+  window.location.href = (next.startsWith("/") && !next.startsWith("//")) ? next : "/";
+});
+</script></body></html>

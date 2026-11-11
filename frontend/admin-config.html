@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Config — ScamAlert</title><script>try{document.documentElement.dataset.theme=localStorage.getItem("scamalert-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<link rel="stylesheet" href="/css/style.css"></head>
+<body><header class="top"><div class="wrap"><a class="logo" href="/">ScamAlert</a>
+<nav class="main"><a href="/admin-reports.html">Reports</a><a href="/admin-appeals.html">Appeals</a><a href="/admin-config.html">Config</a></nav>
+<div class="userbox"><span id="user-menu"></span></div></div></header>
+<main class="wrap"><h1>Platform Config</h1>
+<div><button class="btn" id="toggle-new">Add Config</button> <button class="btn gray" id="recalc">Recalculate risk</button></div>
+<div id="new-panel" class="card" style="display:none"><label>Key<input id="nk" placeholder="rate_limit.report_new"></label>
+<label>Value<input id="nv" placeholder='"10" or {"limit":10}'></label>
+<label>Description<input id="nd"></label><p><button class="btn" id="create">Save</button> <button class="btn gray" id="cancel">Cancel</button></p></div>
+<div id="box" style="margin-top:1rem"><div class="skeleton">Loading…</div></div></main>
+<footer class="bot"><div class="wrap"><p>ScamAlert admin</p></div></footer>
+<script src="/js/app.js"></script><script src="/js/auth.js"></script><script src="/js/theme.js"></script><script src="/js/admin-config.js"></script>
+</body></html>

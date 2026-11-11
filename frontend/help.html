@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Help — ScamAlert</title><script>try{document.documentElement.dataset.theme=localStorage.getItem("scamalert-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<link rel="stylesheet" href="/css/style.css"></head>
+<body><header class="top"><div class="wrap"><a class="logo" href="/">ScamAlert</a>
+<nav class="main"><a href="/reports.html">Reports</a><a href="/search.html">Search</a><a href="/help.html">Help</a></nav>
+<div class="userbox"><a class="btn" href="/report-new.html">Submit Report</a><span id="user-menu"></span></div></div></header>
+<main class="wrap"><h1>Help &amp; Cybercrime Resources</h1>
+<p class="muted">ScamAlert is a community-driven platform for marking fraudulent websites in India. Use it to check a suspicious link before you pay, report fraud you have seen, and help others verify. For money already lost, always call <a href="tel:+911930">1930</a> first, then file on <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>.</p>
+<div class="card"><h3>On this page</h3><p class="small">
+<a href="#what-is">What is ScamAlert</a> &middot;
+<a href="#check">Check a website</a> &middot;
+<a href="#submit">Submit a report</a> &middot;
+<a href="#evidence">Evidence tips</a> &middot;
+<a href="#scores">Risk scores</a> &middot;
+<a href="#community">Verification &amp; reputation</a> &middot;
+<a href="#appeals">Appeals</a> &middot;
+<a href="#emergency">Emergency contacts</a> &middot;
+<a href="#safety">Safety tips</a> &middot;
+<a href="#faq">FAQ</a></p></div>
+<div class="card" id="what-is"><h3>What is ScamAlert?</h3>
+<p>Anyone can submit a fraud report with a URL, title, description, category, and evidence (screenshots, receipts). The community then verifies it with votes, comments, and discussions. Moderators review the queue and archive abuse.</p>
+<p>Every website gets a <strong>two-axis risk score</strong> that separates <em>technically malicious</em> from <em>community-reported fraud</em>:</p>
+<ul><li><strong>Technical risk</strong> — automated signals (lookalike domain, suspicious TLD, missing HTTPS, young WHOIS).</li>
+<li><strong>Fraud risk</strong> — community signals (report count, confirm votes, severity of category).</li></ul>
+<p class="small muted">Final = (Community &times; 0.40) + (Automated &times; 0.40) + (Category Severity &times; 0.20). Each axis is 0&ndash;100.</p></div>
+<div class="card" id="check"><h3>Check a website before you trust it</h3><ol>
+<li>Go to <a href="/search.html">Search</a> and paste the full URL, domain, or keywords.</li>
+<li>Open the report at <a href="/reports.html">Reports</a> and read the risk pill, score bars, status, evidence files, vote counts, and comment thread.</li>
+<li>Still unsure? Open the linked <a href="/discussions.html">Discussion</a> for that website, or start one, and ask the community.</li>
+<li>Check WHOIS age, HTTPS, and spelling tricks (extra dashes, homoglyphs, free-TLD lookalikes) on the <a href="/help.html#safety">safety checklist</a> below.</li></ol></div>
+<div class="card" id="submit"><h3>Submit a good report</h3><ol>
+<li><a href="/report-new.html">Submit a report</a> — you must be signed in. Guests cannot file reports or votes, but can comment (shown as Anonymous).</li>
+<li>Pick the exact <strong>category</strong> from the dropdown.</li>
+<li>Write a clear title (&ldquo;Fake UPI cashback site impersonating&hellip;&rdquo;) and describe what happened, when, how much money, and which URL asked for payment or OTP.</li>
+<li>Tick &ldquo;Submit anonymously&rdquo; if you do not want your name shown — moderators still see the record.</li>
+<li>Attach evidence, then download your complaint draft from the report page for the police / NCRP filing.</li></ol>
+<div class="card" id="evidence"><h3>Evidence tips</h3><ul>
+<li>Screenshots of the site, payment page, UPI handle, chat history, SMS, and bank/UPI transaction IDs.</li>
+<li>Files up to 10 MB each, from an 11-type allowlist (images, PDF, text).</li>
+<li>Uploaded files are viewable at their <span class="small">/uploads/&hellip;</span> links with image thumbnails on the report page.</li>
+<li>Blur Aadhaar, full card numbers, and passwords before uploading.</li></ul></div>
+<div class="card" id="scores"><h3>Reading risk scores, levels, and stages</h3>
+<p>Risk pills: <span class="pill critical">critical</span> <span class="pill high">high</span> <span class="pill medium">medium</span> <span class="pill low">low</span> <span class="pill safe">safe</span> <span class="pill other">other</span>. Higher means riskier. Treat <strong>critical / high</strong> as do-not-pay.</p>
+<p class="small muted">Stages: reported &rarr; under review &rarr; verified / disputed &rarr; archived. History on each report page shows every transition.</p></div>
+<div class="card" id="community"><h3>Community verification &amp; reputation</h3><ul>
+<li>Reports and votes require login. You can comment anonymously.</li>
+<li>Voting additionally requires reputation &ge; 60 — new accounts can report and comment first, then earn voting rights.</li>
+<li>Tiers: <span class="pill newcomer">newcomer</span> <span class="pill new">new</span> <span class="pill trusted">trusted</span> <span class="pill expert">expert</span> <span class="pill moderator">moderator</span>. Good reports and accurate votes raise reputation.</li>
+<li>See who is helping on the <a href="/users.html">Reputation Leaderboard</a>.</li></ul></div>
+<div class="card" id="appeals"><h3>Appeals</h3><p>If your site was flagged by mistake, file an appeal from the report or website page. A moderator reviews evidence and marks it upheld, overturned, or rejected. Track progress on the appeal page. Provide ownership proof (domain control, business registration, official contact).</p></div>
+<div class="card" id="emergency"><h3>Emergency Contacts</h3><p>National Cyber Crime Helpline: <a href="tel:+911930">1930</a> (call immediately for financial fraud faster than any web form).</p>
+<p>NCRP: <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a> file complaints and track status.</p>
+<p>Suspect form: <a href="https://cybercrime.gov.in/Webform/cyber_suspect.aspx" target="_blank" rel="noopener">cyber_suspect.aspx</a></p></div>
+<div class="card"><h3>CERT-In</h3><p>Email: <a href="mailto:incident@cert-in.org.in">incident@cert-in.org.in</a></p>
+<p>Phone: 1800-11-4949 &middot; Site: <a href="https://www.cert-in.org.in" target="_blank" rel="noopener">cert-in.org.in</a> report phishing sites and malware.</p></div>
+<div class="card"><h3>IT Act Sections</h3><p>Section 66C Identity Theft. Section 66D — Cheating by Personation. Section 43 Damage to Computer System. Mention the relevant section and attach your ScamAlert complaint draft plus the NCRP acknowledgement number when visiting the police station.</p></div>
+<div class="card"><h3>How to file a complaint</h3><ol>
+<li>Save evidence (screenshots, URLs, transaction IDs).</li><li>Call 1930 for urgent financial fraud.</li>
+<li>File on cybercrime.gov.in (NCRP).</li><li>Download your ScamAlert complaint draft from the report page (DOCX via the complaint button).</li>
+<li>Visit your nearest police station with the acknowledgement number.</li><li>Report phishing to CERT-In at incident@cert-in.org.in.</li></ol></div>
+<div class="card" id="safety"><h3>Safety tips for UPI, OTP, and KYC fraud</h3><ul>
+<li>Never share OTPs, UPI PINs, or screen-share on a &ldquo;support&rdquo; call. Banks never ask for them.</li>
+<li>Verify UPI IDs character-by-character; scammers swap one letter or add &ldquo;support&rdquo;, &ldquo;refund&rdquo;, &ldquo;kyc&rdquo;.</li>
+<li>Beware &ldquo;pay &#8377;1 for KYC / cashback / job&rdquo; links — real KYC never happens over random links.</li>
+<li>Check the domain: misspellings, extra hyphens, free subdomains, and newly registered sites are red flags.</li>
+<li>Do not install remote-desktop or &ldquo;support&rdquo; APKs from links. Download apps only from official stores.</li></ul></div>
+<div class="card" id="faq"><h3>Frequently asked questions</h3>
+<p><strong>Do I need an account?</strong><br>For reports and votes, yes. For comments, no guests post as Anonymous.</p>
+<p><strong>Why can&rsquo;t I vote?</strong><br>Voting needs reputation &ge; 60. Submit accurate reports and helpful comments to earn it.</p>
+<p><strong>Is my report anonymous?</strong><br>Only if you tick &ldquo;Submit anonymously&rdquo;. Your account still owns the record for moderation and appeals.</p>
+<p><strong>Where is my complaint letter?</strong><br>On the report page, the complaint button downloads a DOCX draft for NCRP / police use.</p>
+<p><strong>Why was my submit rejected?</strong><br>Common causes: wrong category, hit the hourly rate limit, unsupported evidence file type, or duplicate URL already reported search first.</p>
+<p><strong>How does search work?</strong><br>It merges full-text title/description hits with domain and keyword matches and dedupes by report, so searching a bare domain still finds the report.</p></div>
+<div class="card"><h3>Get started</h3><p><a class="btn" href="/report-new.html">Submit a report</a> <a class="btn" href="/search.html">Search reports</a> <a class="btn" href="/reports.html">Browse all</a></p>
+</div>
+</main>
+<footer class="bot"><div class="wrap"><a href="tel:+911930">1930 Helpline</a><a href="https://cybercrime.gov.in" target="_blank" rel="noopener">NCRP</a><a href="mailto:incident@cert-in.org.in">CERT-In</a><p>ScamAlert — Community-driven fraud protection for India</p></div></footer>
+<script src="/js/app.js"></script><script src="/js/auth.js"></script><script src="/js/theme.js"></script>
+</body></html>

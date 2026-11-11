@@ -1,0 +1,36 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: scamalert
+      MYSQL_USER: scamalert_user
+      MYSQL_PASSWORD: scamalert_pass
+    ports:
+      - "3308:3306"
+    volumes:
+      - scamalert_mysql_data:/var/lib/mysql
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --innodb-buffer-pool-size=256M
+      --max-connections=100
+      --innodb_ft_min_token_size=2
+      --log-bin-trust-function-creators=1
+  web:
+    build: .
+    environment:
+      DATABASE_URL: mysql://scamalert_user:scamalert_pass@mysql:3306/scamalert
+      FLASK_SECRET: change-me-to-a-random-secret
+      APP_URL: http://localhost:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    command: python -m flask --app backend.app run --host 0.0.0.0 --port 5000
+    volumes:
+      - scamalert_uploads:/app/uploads
+
+volumes:
+  scamalert_mysql_data:
+  scamalert_uploads:

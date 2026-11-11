@@ -1,0 +1,149 @@
+erDiagram
+    users {
+        BINARY id PK
+        VARCHAR email UK
+        VARCHAR display_name
+        ENUM role
+        INT reputation_score
+    }
+    categories {
+        BINARY id PK
+        VARCHAR name UK
+        VARCHAR slug UK
+        DECIMAL severity_weight
+    }
+    website_urls {
+        BINARY id PK
+        TEXT normalized_url UK
+        VARCHAR domain
+        DECIMAL risk_score
+    }
+    fraud_reports {
+        BINARY id PK
+        BINARY reporter_id FK
+        BINARY website_url_id FK
+        BINARY category_id FK
+        VARCHAR title
+        ENUM status
+        ENUM verification_stage
+    }
+    report_evidence {
+        BINARY id PK
+        BINARY report_id FK
+        BINARY uploaded_by FK
+        ENUM evidence_type
+    }
+    verification_votes {
+        BINARY id PK
+        BINARY report_id FK
+        BINARY voter_id FK
+        ENUM vote_type
+    }
+    tags {
+        BINARY id PK
+        VARCHAR name UK
+        VARCHAR slug UK
+    }
+    report_tags {
+        BINARY report_id FK
+        BINARY tag_id FK
+    }
+    report_comments {
+        BINARY id PK
+        BINARY report_id FK
+        BINARY user_id FK
+        BINARY parent_id FK
+    }
+    report_history {
+        BINARY id PK
+        BINARY report_id FK
+        BINARY actor_id FK
+        ENUM action
+    }
+    risk_score_breakdowns {
+        BINARY id PK
+        BINARY website_url_id FK
+        DECIMAL community_sub_score
+        DECIMAL automated_sub_score
+        DECIMAL final_score
+    }
+    appeals {
+        BINARY id PK
+        BINARY report_id FK
+        VARCHAR appellant_email
+        ENUM status
+        BINARY resolved_by FK
+    }
+    appeal_evidence {
+        BINARY id PK
+        BINARY appeal_id FK
+        ENUM evidence_type
+    }
+    reputation_events {
+        BINARY id PK
+        BINARY user_id FK
+        INT delta
+        ENUM reason
+    }
+    rate_limit_events {
+        BINARY id PK
+        BINARY user_id FK
+        VARCHAR action_type
+    }
+    audit_events {
+        BINARY id PK
+        BINARY actor_id FK
+        VARCHAR action
+        VARCHAR entity_type
+    }
+    platform_config {
+        VARCHAR key PK
+        JSON value
+    }
+    website_discussions {
+        BINARY id PK
+        BINARY website_url_id FK
+        BINARY author_id FK
+        VARCHAR title
+    }
+    discussion_replies {
+        BINARY id PK
+        BINARY discussion_id FK
+        BINARY author_id FK
+        BINARY parent_id FK
+    }
+    discussion_votes {
+        BINARY id PK
+        BINARY user_id FK
+        ENUM target_type
+        BINARY target_id FK
+    }
+
+    users ||--o{ fraud_reports : "submits"
+    categories ||--o{ fraud_reports : "categorizes"
+    website_urls ||--o{ fraud_reports : "targets"
+    fraud_reports ||--o{ fraud_reports : "is_duplicate_of"
+    fraud_reports ||--o{ report_evidence : "has"
+    users ||--o{ report_evidence : "uploads"
+    fraud_reports ||--o{ verification_votes : "receives"
+    users ||--o{ verification_votes : "casts"
+    fraud_reports ||--o{ report_tags : "tagged_with"
+    tags ||--o{ report_tags : "applied_to"
+    fraud_reports ||--o{ report_comments : "discusses"
+    users ||--o{ report_comments : "writes"
+    report_comments ||--o{ report_comments : "replies_to"
+    fraud_reports ||--o{ report_history : "tracked_by"
+    users ||--o{ report_history : "acts_on"
+    website_urls ||--o{ risk_score_breakdowns : "scored_by"
+    fraud_reports ||--o{ appeals : "disputed_via"
+    users ||--o{ appeals : "resolves"
+    appeals ||--o{ appeal_evidence : "supported_by"
+    users ||--o{ reputation_events : "earns"
+    users ||--o{ rate_limit_events : "limited_by"
+    users ||--o{ audit_events : "audited_by"
+    website_urls ||--o{ website_discussions : "discussed_in"
+    users ||--o{ website_discussions : "creates"
+    website_discussions ||--o{ discussion_replies : "receives"
+    users ||--o{ discussion_replies : "writes"
+    discussion_replies ||--o{ discussion_replies : "replies_to"
+    users ||--o{ discussion_votes : "votes_with"

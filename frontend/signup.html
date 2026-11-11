@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign up — ScamAlert</title><script>try{document.documentElement.dataset.theme=localStorage.getItem("scamalert-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<link rel="stylesheet" href="/css/style.css"></head>
+<body><header class="top"><div class="wrap"><a class="logo" href="/">ScamAlert</a>
+<nav class="main"><a href="/reports.html">Reports</a><a href="/search.html">Search</a><a href="/help.html">Help</a></nav>
+<div class="userbox"><a class="btn" href="/report-new.html">Submit Report</a><span id="user-menu"></span></div></div></header>
+<main class="wrap" style="max-width:28rem"><h1>Create account</h1><div id="err" class="error" style="display:none"></div>
+<form id="f"><label>Name<input id="name" type="text" required></label>
+<label>Email<input id="email" type="email" required></label>
+<label>Password (at least 8 chars)<input id="password" type="password" required placeholder="At least 8 chars"></label>
+<p><button class="btn" id="b" type="submit">Create account</button></p></form>
+<p class="small">Have an account? <a href="/login.html">Sign in</a></p></main>
+<footer class="bot"><div class="wrap"><p>ScamAlert — Community-driven fraud protection for India</p></div></footer>
+<script src="/js/app.js"></script><script src="/js/auth.js"></script><script src="/js/theme.js"></script>
+<script>
+document.getElementById("f").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const err = document.getElementById("err"); err.style.display = "none";
+  const name = document.getElementById("name").value, email = document.getElementById("email").value, password = document.getElementById("password").value;
+  if (password.length < 8) { err.textContent = "Password must be at least 8 characters"; err.style.display = "block"; return; }
+  const b = document.getElementById("b"); b.disabled = true; b.textContent = "Creating account…";
+  const r = await window.App.api("/api/auth/signup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, email, password }) });
+  if (!r.ok) { err.textContent = (r.data && r.data.error) || "Signup failed"; err.style.display = "block"; b.disabled = false; b.textContent = "Create account"; return; }
+  window.location.href = "/";
+});
+</script></body></html>
